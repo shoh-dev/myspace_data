@@ -1,5 +1,10 @@
 import 'dart:async';
 
-abstract class DependencyInjection {
-  FutureOr<bool> init();
+import 'package:myspace_data/src/models.dart';
+import 'package:myspace_data/src/services.dart';
+
+abstract class ReduxDependencyInjection {
+  FutureOr<Result> init();
+
+  late final LogService log = LogServiceImpl() as LogService;
 }

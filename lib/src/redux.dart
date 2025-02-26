@@ -1,4 +1,4 @@
-// export 'package:async_redux/async_redux.dart' show VmFactory, Vm;
+export 'package:async_redux/async_redux.dart' show Store;
 
 export 'redux/action.dart';
 export 'redux/store.dart';
