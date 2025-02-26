@@ -18,11 +18,11 @@ extension IterableHelper<T> on Iterable<T> {
 }
 
 extension BuildContextReduxHelper on BuildContext {
-  St getReduxState<St>() => StoreProvider.state<St>(this);
+  // St getReduxState<St>() => StoreProvider.state<St>(this);
 
-  FutureOr<ActionStatus> dispatchReduxAction(action.ReduxAction action, {bool notify = true}) {
-    return StoreProvider.dispatch(this, action, notify: notify);
-  }
+  // FutureOr<ActionStatus> dispatchReduxAction(action.ReduxAction action, {bool notify = true}) {
+  //   return dispatch(action, notify: notify);
+  // }
 
   // Future<ActionStatus> dispatchAndWaitReduxAction(action.ReduxAction action, {bool notify = true}) {
   //   return StoreProvider.dispatchAndWait(this, action, notify: notify);
