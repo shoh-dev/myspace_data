@@ -1,2 +1,2 @@
-export 'repos/env_keys_service.dart';
-export 'repos/path_service.dart';
+export 'services/env_keys_service.dart';
+export 'services/path_provider_service.dart';

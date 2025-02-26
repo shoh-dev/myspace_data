@@ -1,11 +1,9 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 
-import 'state.dart';
-
-class AppStoreProvider extends StatelessWidget {
+class AppStoreProvider<St> extends StatelessWidget {
   final Widget child;
-  final Store<AppState> appStore;
+  final Store<St> appStore;
 
   const AppStoreProvider({
     super.key,
@@ -15,7 +13,7 @@ class AppStoreProvider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StoreProvider<AppState>(
+    return StoreProvider<St>(
       store: appStore,
       child: child,
     );

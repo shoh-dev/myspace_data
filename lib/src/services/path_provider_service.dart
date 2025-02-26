@@ -3,11 +3,11 @@ import 'dart:io';
 import 'package:myspace_data/myspace_data.dart';
 import 'package:path_provider/path_provider.dart' as p;
 
-abstract class PathService {
+abstract class PathProviderService {
   ResultFuture<Directory> getApplicationDocumentsDirectory();
 }
 
-class PathServiceImpl implements PathService {
+class PathProviderServiceImpl implements PathProviderService {
   @override
   ResultFuture<Directory> getApplicationDocumentsDirectory() async {
     try {

@@ -2,11 +2,11 @@
 // get value using const String.fromEnvironment("C_H_R");
 
 ///put spec.json in the root where the app is being run
-abstract final class EnvKeysService {
+abstract final class EnvironmentKeyService {
   String get exampleKey;
 }
 
-final class EnvKeysServiceImpl implements EnvKeysService {
+final class EnvironmentKeyServiceImpl implements EnvironmentKeyService {
   @override
   String get exampleKey => const String.fromEnvironment("EAMPLE_KEY");
 }

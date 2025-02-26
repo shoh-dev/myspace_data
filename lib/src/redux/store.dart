@@ -1,52 +1,29 @@
-import 'dart:async';
 import 'dart:developer';
 
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/foundation.dart';
-import 'package:get_it/get_it.dart';
-import 'package:myspace_data/myspace_data.dart';
+import 'package:myspace_data/src/redux/di/di.dart';
 
-import 'di/di.dart';
-
-class AppStore {
+class AppStore<St> {
   const AppStore({
-    this.enableActionLog = true,
+    this.enableActionLog = false,
+    required this.initialState,
+    required this.di,
   });
 
   final bool enableActionLog;
+  final St initialState;
+  final DependencyInjection di;
 
-  void registerSingleton<T extends Object>(T di, {bool unregisterIfExists = false}) {
-    DependencyInjection.registerSingleton<T>(di, deregisterIfExists: unregisterIfExists);
-  }
-
-  Future<void> registerAsyncSingleton<T extends Object>(FactoryFuncAsync<T> di, {bool unregisterIfExists = false}) {
-    DependencyInjection.registerAsyncSingleton<T>(di, deregisterIfExists: unregisterIfExists);
-    return allReady();
-  }
-
-  Future<void> allReady() {
-    return DependencyInjection.allReady();
-  }
-
-  T getDependency<T extends Object>() {
-    return DependencyInjection.get<T>();
-  }
-
-  Future<void> setupDependencies() async {
-    registerSingleton(EnvKeysServiceImpl());
-    registerSingleton(PathServiceImpl());
-
-    //registser future dependencies below
-  }
-
-  Store<AppState> createStore() {
+  Store<St> createStore() {
     log('Creating store...');
-    final store = Store<AppState>(
+    final store = Store<St>(
+      environment: di,
       actionObservers: [
         if (enableActionLog)
           if (kDebugMode) Log.printer(formatter: Log.verySimpleFormatter),
       ],
-      initialState: AppState.initial(),
+      initialState: initialState,
     );
 
     log("Application has loaded these states:\n${store.state}");
