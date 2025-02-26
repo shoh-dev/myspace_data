@@ -3,14 +3,14 @@ import 'package:logger/logger.dart';
 abstract class LogService {
   final Logger logger;
 
-  LogService([Logger? logger]) : logger = logger ?? Logger();
+  LogService([Logger? logger]) : logger = logger ?? Logger(printer: PrettyPrinter());
 
   void info(dynamic message) {
-    logger.i(message.toString());
+    logger.i(message);
   }
 
   void error(dynamic message, [Object? error, StackTrace? stackTrace]) {
-    logger.e(message, error: error, stackTrace: stackTrace, time: DateTime.now());
+    logger.e(message, error: error, stackTrace: stackTrace);
   }
 
   void warning(dynamic message) {
