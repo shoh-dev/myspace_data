@@ -13,18 +13,18 @@ class StoreConnector<St, Model> extends StatelessWidget {
 
   final Model Function(St state) converter;
   final Widget Function(BuildContext context, Model vm) builder;
-  final void Function(BuildContext context)? onDispose;
-  final void Function(BuildContext context, Model vm)? onInitialBuild;
-  final void Function(BuildContext context, St state, Model vm)? onDidChange;
+  final void Function(ar.Dispatch<St> dispatch, Model vm)? onInitialBuild;
+  final void Function(ar.Dispatch<St> dispatch, St state, Model vm)? onDidChange;
+  final void Function(ar.Dispatch<St> dispatch)? onDispose;
 
   @override
   Widget build(BuildContext context) {
     return ar.StoreConnector<St, Model>(
-      converter: (store) => converter(store.state),
       builder: builder,
-      onDispose: onDispose != null ? (store) => onDispose!(context) : null,
-      onInitialBuild: onInitialBuild != null ? (ctx, store, vm) => onInitialBuild!(ctx ?? context, vm) : null,
-      onDidChange: onDidChange != null ? (ctx, store, vm) => onDidChange!(ctx ?? context, store.state, vm) : null,
+      converter: (store) => converter(store.state),
+      onDispose: onDispose != null ? (store) => onDispose!(store.dispatch) : null,
+      onInitialBuild: onInitialBuild != null ? (ctx, store, vm) => onInitialBuild!(store.dispatch, vm) : null,
+      onDidChange: onDidChange != null ? (ctx, store, vm) => onDidChange!(store.dispatch, store.state, vm) : null,
     );
   }
 }
