@@ -1,4 +1,29 @@
+import 'dart:developer';
+
+import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
+
+class ConsoleOutput extends LogOutput {
+  @override
+  void output(OutputEvent event) {
+    if (kReleaseMode) {
+      return;
+    }
+
+    for (var line in event.lines) {
+      final bool isDebug = line.contains("🐛");
+      final bool isError = line.contains("⛔");
+      final bool isInfo = line.contains("💡");
+      final bool isWarning = line.contains("⚠️");
+      final time = event.origin.time;
+      if (isDebug || isError || isInfo || isWarning) {
+        log("\n");
+        log("${time.hour}:${time.minute}:${time.second} $line");
+        log("\n");
+      }
+    }
+  }
+}
 
 abstract class LogService {
   final Logger logger;
@@ -15,7 +40,7 @@ abstract class LogService {
                 // Should each log print contain a timestamp
                 dateTimeFormat: DateTimeFormat.onlyTime,
               ),
-              output: null,
+              output: ConsoleOutput(),
               filter: null,
             );
 
@@ -33,10 +58,6 @@ abstract class LogService {
 
   void debug(dynamic message) {
     logger.d(message);
-  }
-
-  void verbose(dynamic message, [Object? error, StackTrace? stackTrace]) {
-    logger.t(message, error: error, stackTrace: stackTrace);
   }
 }
 
