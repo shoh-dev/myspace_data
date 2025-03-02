@@ -19,44 +19,50 @@ mixin _$StateResult {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() ok,
+    required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ErrorX error) error,
+    required TResult Function(Object exception) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? ok,
+    TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ErrorX error)? error,
+    TResult? Function(Object exception)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? ok,
+    TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ErrorX error)? error,
+    TResult Function(Object exception)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(StateResultOkX value) ok,
+    required TResult Function(StateResultInitialX value) initial,
     required TResult Function(StateResultLoadingX value) loading,
-    required TResult Function(StateResultError value) error,
+    required TResult Function(StateResultErrorX value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(StateResultOkX value)? ok,
+    TResult? Function(StateResultInitialX value)? initial,
     TResult? Function(StateResultLoadingX value)? loading,
-    TResult? Function(StateResultError value)? error,
+    TResult? Function(StateResultErrorX value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(StateResultOkX value)? ok,
+    TResult Function(StateResultInitialX value)? initial,
     TResult Function(StateResultLoadingX value)? loading,
-    TResult Function(StateResultError value)? error,
+    TResult Function(StateResultErrorX value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -108,11 +114,6 @@ class _$StateResultOkXImpl implements StateResultOkX {
   const _$StateResultOkXImpl();
 
   @override
-  String toString() {
-    return 'StateResult.ok()';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$StateResultOkXImpl);
@@ -125,8 +126,9 @@ class _$StateResultOkXImpl implements StateResultOkX {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() ok,
+    required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ErrorX error) error,
+    required TResult Function(Object exception) error,
   }) {
     return ok();
   }
@@ -135,8 +137,9 @@ class _$StateResultOkXImpl implements StateResultOkX {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? ok,
+    TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ErrorX error)? error,
+    TResult? Function(Object exception)? error,
   }) {
     return ok?.call();
   }
@@ -145,8 +148,9 @@ class _$StateResultOkXImpl implements StateResultOkX {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? ok,
+    TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ErrorX error)? error,
+    TResult Function(Object exception)? error,
     required TResult orElse(),
   }) {
     if (ok != null) {
@@ -159,8 +163,9 @@ class _$StateResultOkXImpl implements StateResultOkX {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(StateResultOkX value) ok,
+    required TResult Function(StateResultInitialX value) initial,
     required TResult Function(StateResultLoadingX value) loading,
-    required TResult Function(StateResultError value) error,
+    required TResult Function(StateResultErrorX value) error,
   }) {
     return ok(this);
   }
@@ -169,8 +174,9 @@ class _$StateResultOkXImpl implements StateResultOkX {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(StateResultOkX value)? ok,
+    TResult? Function(StateResultInitialX value)? initial,
     TResult? Function(StateResultLoadingX value)? loading,
-    TResult? Function(StateResultError value)? error,
+    TResult? Function(StateResultErrorX value)? error,
   }) {
     return ok?.call(this);
   }
@@ -179,8 +185,9 @@ class _$StateResultOkXImpl implements StateResultOkX {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(StateResultOkX value)? ok,
+    TResult Function(StateResultInitialX value)? initial,
     TResult Function(StateResultLoadingX value)? loading,
-    TResult Function(StateResultError value)? error,
+    TResult Function(StateResultErrorX value)? error,
     required TResult orElse(),
   }) {
     if (ok != null) {
@@ -192,6 +199,119 @@ class _$StateResultOkXImpl implements StateResultOkX {
 
 abstract class StateResultOkX implements StateResult {
   const factory StateResultOkX() = _$StateResultOkXImpl;
+}
+
+/// @nodoc
+abstract class _$$StateResultInitialXImplCopyWith<$Res> {
+  factory _$$StateResultInitialXImplCopyWith(_$StateResultInitialXImpl value,
+          $Res Function(_$StateResultInitialXImpl) then) =
+      __$$StateResultInitialXImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$StateResultInitialXImplCopyWithImpl<$Res>
+    extends _$StateResultCopyWithImpl<$Res, _$StateResultInitialXImpl>
+    implements _$$StateResultInitialXImplCopyWith<$Res> {
+  __$$StateResultInitialXImplCopyWithImpl(_$StateResultInitialXImpl _value,
+      $Res Function(_$StateResultInitialXImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of StateResult
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$StateResultInitialXImpl implements StateResultInitialX {
+  const _$StateResultInitialXImpl();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$StateResultInitialXImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() ok,
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(Object exception) error,
+  }) {
+    return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? ok,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(Object exception)? error,
+  }) {
+    return initial?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? ok,
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(Object exception)? error,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(StateResultOkX value) ok,
+    required TResult Function(StateResultInitialX value) initial,
+    required TResult Function(StateResultLoadingX value) loading,
+    required TResult Function(StateResultErrorX value) error,
+  }) {
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(StateResultOkX value)? ok,
+    TResult? Function(StateResultInitialX value)? initial,
+    TResult? Function(StateResultLoadingX value)? loading,
+    TResult? Function(StateResultErrorX value)? error,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(StateResultOkX value)? ok,
+    TResult Function(StateResultInitialX value)? initial,
+    TResult Function(StateResultLoadingX value)? loading,
+    TResult Function(StateResultErrorX value)? error,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class StateResultInitialX implements StateResult {
+  const factory StateResultInitialX() = _$StateResultInitialXImpl;
 }
 
 /// @nodoc
@@ -219,11 +339,6 @@ class _$StateResultLoadingXImpl implements StateResultLoadingX {
   const _$StateResultLoadingXImpl();
 
   @override
-  String toString() {
-    return 'StateResult.loading()';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -237,8 +352,9 @@ class _$StateResultLoadingXImpl implements StateResultLoadingX {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() ok,
+    required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ErrorX error) error,
+    required TResult Function(Object exception) error,
   }) {
     return loading();
   }
@@ -247,8 +363,9 @@ class _$StateResultLoadingXImpl implements StateResultLoadingX {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? ok,
+    TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ErrorX error)? error,
+    TResult? Function(Object exception)? error,
   }) {
     return loading?.call();
   }
@@ -257,8 +374,9 @@ class _$StateResultLoadingXImpl implements StateResultLoadingX {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? ok,
+    TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ErrorX error)? error,
+    TResult Function(Object exception)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -271,8 +389,9 @@ class _$StateResultLoadingXImpl implements StateResultLoadingX {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(StateResultOkX value) ok,
+    required TResult Function(StateResultInitialX value) initial,
     required TResult Function(StateResultLoadingX value) loading,
-    required TResult Function(StateResultError value) error,
+    required TResult Function(StateResultErrorX value) error,
   }) {
     return loading(this);
   }
@@ -281,8 +400,9 @@ class _$StateResultLoadingXImpl implements StateResultLoadingX {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(StateResultOkX value)? ok,
+    TResult? Function(StateResultInitialX value)? initial,
     TResult? Function(StateResultLoadingX value)? loading,
-    TResult? Function(StateResultError value)? error,
+    TResult? Function(StateResultErrorX value)? error,
   }) {
     return loading?.call(this);
   }
@@ -291,8 +411,9 @@ class _$StateResultLoadingXImpl implements StateResultLoadingX {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(StateResultOkX value)? ok,
+    TResult Function(StateResultInitialX value)? initial,
     TResult Function(StateResultLoadingX value)? loading,
-    TResult Function(StateResultError value)? error,
+    TResult Function(StateResultErrorX value)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -307,22 +428,20 @@ abstract class StateResultLoadingX implements StateResult {
 }
 
 /// @nodoc
-abstract class _$$StateResultErrorImplCopyWith<$Res> {
-  factory _$$StateResultErrorImplCopyWith(_$StateResultErrorImpl value,
-          $Res Function(_$StateResultErrorImpl) then) =
-      __$$StateResultErrorImplCopyWithImpl<$Res>;
+abstract class _$$StateResultErrorXImplCopyWith<$Res> {
+  factory _$$StateResultErrorXImplCopyWith(_$StateResultErrorXImpl value,
+          $Res Function(_$StateResultErrorXImpl) then) =
+      __$$StateResultErrorXImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({ErrorX error});
-
-  $ErrorXCopyWith<$Res> get error;
+  $Res call({Object exception});
 }
 
 /// @nodoc
-class __$$StateResultErrorImplCopyWithImpl<$Res>
-    extends _$StateResultCopyWithImpl<$Res, _$StateResultErrorImpl>
-    implements _$$StateResultErrorImplCopyWith<$Res> {
-  __$$StateResultErrorImplCopyWithImpl(_$StateResultErrorImpl _value,
-      $Res Function(_$StateResultErrorImpl) _then)
+class __$$StateResultErrorXImplCopyWithImpl<$Res>
+    extends _$StateResultCopyWithImpl<$Res, _$StateResultErrorXImpl>
+    implements _$$StateResultErrorXImplCopyWith<$Res> {
+  __$$StateResultErrorXImplCopyWithImpl(_$StateResultErrorXImpl _value,
+      $Res Function(_$StateResultErrorXImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of StateResult
@@ -330,90 +449,76 @@ class __$$StateResultErrorImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? error = null,
+    Object? exception = null,
   }) {
-    return _then(_$StateResultErrorImpl(
-      null == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as ErrorX,
+    return _then(_$StateResultErrorXImpl(
+      null == exception ? _value.exception : exception,
     ));
-  }
-
-  /// Create a copy of StateResult
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ErrorXCopyWith<$Res> get error {
-    return $ErrorXCopyWith<$Res>(_value.error, (value) {
-      return _then(_value.copyWith(error: value));
-    });
   }
 }
 
 /// @nodoc
 
-class _$StateResultErrorImpl implements StateResultError {
-  const _$StateResultErrorImpl(this.error);
+class _$StateResultErrorXImpl implements StateResultErrorX {
+  const _$StateResultErrorXImpl(this.exception);
 
   @override
-  final ErrorX error;
-
-  @override
-  String toString() {
-    return 'StateResult.error(error: $error)';
-  }
+  final Object exception;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$StateResultErrorImpl &&
-            (identical(other.error, error) || other.error == error));
+            other is _$StateResultErrorXImpl &&
+            const DeepCollectionEquality().equals(other.exception, exception));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, error);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(exception));
 
   /// Create a copy of StateResult
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$StateResultErrorImplCopyWith<_$StateResultErrorImpl> get copyWith =>
-      __$$StateResultErrorImplCopyWithImpl<_$StateResultErrorImpl>(
+  _$$StateResultErrorXImplCopyWith<_$StateResultErrorXImpl> get copyWith =>
+      __$$StateResultErrorXImplCopyWithImpl<_$StateResultErrorXImpl>(
           this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() ok,
+    required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ErrorX error) error,
+    required TResult Function(Object exception) error,
   }) {
-    return error(this.error);
+    return error(exception);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? ok,
+    TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ErrorX error)? error,
+    TResult? Function(Object exception)? error,
   }) {
-    return error?.call(this.error);
+    return error?.call(exception);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? ok,
+    TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ErrorX error)? error,
+    TResult Function(Object exception)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(this.error);
+      return error(exception);
     }
     return orElse();
   }
@@ -422,8 +527,9 @@ class _$StateResultErrorImpl implements StateResultError {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(StateResultOkX value) ok,
+    required TResult Function(StateResultInitialX value) initial,
     required TResult Function(StateResultLoadingX value) loading,
-    required TResult Function(StateResultError value) error,
+    required TResult Function(StateResultErrorX value) error,
   }) {
     return error(this);
   }
@@ -432,8 +538,9 @@ class _$StateResultErrorImpl implements StateResultError {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(StateResultOkX value)? ok,
+    TResult? Function(StateResultInitialX value)? initial,
     TResult? Function(StateResultLoadingX value)? loading,
-    TResult? Function(StateResultError value)? error,
+    TResult? Function(StateResultErrorX value)? error,
   }) {
     return error?.call(this);
   }
@@ -442,8 +549,9 @@ class _$StateResultErrorImpl implements StateResultError {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(StateResultOkX value)? ok,
+    TResult Function(StateResultInitialX value)? initial,
     TResult Function(StateResultLoadingX value)? loading,
-    TResult Function(StateResultError value)? error,
+    TResult Function(StateResultErrorX value)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -453,14 +561,15 @@ class _$StateResultErrorImpl implements StateResultError {
   }
 }
 
-abstract class StateResultError implements StateResult {
-  const factory StateResultError(final ErrorX error) = _$StateResultErrorImpl;
+abstract class StateResultErrorX implements StateResult {
+  const factory StateResultErrorX(final Object exception) =
+      _$StateResultErrorXImpl;
 
-  ErrorX get error;
+  Object get exception;
 
   /// Create a copy of StateResult
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$StateResultErrorImplCopyWith<_$StateResultErrorImpl> get copyWith =>
+  _$$StateResultErrorXImplCopyWith<_$StateResultErrorXImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

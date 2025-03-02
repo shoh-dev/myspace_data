@@ -25,7 +25,7 @@ class ConsoleOutput extends LogOutput {
   }
 }
 
-abstract class LogService {
+class LogService {
   final Logger logger;
 
   LogService([Logger? logger])
@@ -59,8 +59,4 @@ abstract class LogService {
   void debug(dynamic message) {
     logger.d(message);
   }
-}
-
-class LogServiceImpl extends LogService {
-  LogServiceImpl([super.logger]);
 }

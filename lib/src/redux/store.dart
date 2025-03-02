@@ -4,16 +4,16 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/foundation.dart';
 import 'package:myspace_data/src/redux/di/di.dart';
 
-class ReduxStore<St> {
-  const ReduxStore({
+class AppStore<St> {
+  const AppStore({
     this.enableActionLog = false,
     required this.initialState,
-    required this.di,
+    this.di,
   });
 
   final bool enableActionLog;
   final St initialState;
-  final ReduxDependencyInjection di;
+  final ReduxDependencyInjection? di;
 
   Store<St> createStore() {
     log('Creating store...');

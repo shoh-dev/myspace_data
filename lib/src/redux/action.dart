@@ -3,5 +3,5 @@ import 'package:myspace_data/myspace_data.dart';
 
 abstract class ReduxAction<St> extends redux.ReduxAction<St> {
   @override
-  ReduxDependencyInjection get env => super.env as ReduxDependencyInjection;
+  ReduxDependencyInjection? get env => super.env as ReduxDependencyInjection?;
 }
