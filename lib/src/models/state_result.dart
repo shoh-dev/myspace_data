@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:myspace_data/src/models/result.dart';
 
 part 'state_result.freezed.dart';
 
@@ -9,25 +10,10 @@ sealed class StateResult with _$StateResult {
   const factory StateResult.ok() = StateResultOkX;
   const factory StateResult.initial() = StateResultInitialX;
   const factory StateResult.loading() = StateResultLoadingX;
-  const factory StateResult.error(Object exception) = StateResultErrorX;
+  const factory StateResult.error(ErrorX error) = StateResultErrorX;
 
-  @override
-  String toString() {
-    if (this is StateResultErrorX) {
-      final exception = (this as StateResultErrorX).exception;
-
-      switch (exception) {
-        case StateResultErrorX():
-          return "Error: ${exception.toString()}";
-        case TypeError():
-          return "Type Error: ${exception.toString()}";
-        case SocketException():
-          return "Please check your internet connection!";
-      }
-      return exception.toString();
-    }
-
-    return super.toString();
+  factory StateResult.fromException(Object exception, [StackTrace? st]) {
+    return StateResult.error(ErrorX(exception, st));
   }
 }
 

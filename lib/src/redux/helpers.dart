@@ -15,7 +15,7 @@ extension IterableHelper<T> on Iterable<T> {
 }
 
 extension BuildContextReduxHelper on BuildContext {
-  DI getDepdendency<DI extends ReduxDependencyInjection>() {
+  DI getDependency<DI extends ReduxDependencyInjection>() {
     return ar.StoreProvider.backdoorStaticGlobal().env as DI;
   }
 }

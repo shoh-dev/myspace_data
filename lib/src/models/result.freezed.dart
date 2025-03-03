@@ -19,38 +19,38 @@ mixin _$Result<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T value) ok,
-    required TResult Function(Object exception) error,
+    required TResult Function(ErrorX error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(T value)? ok,
-    TResult? Function(Object exception)? error,
+    TResult? Function(ErrorX error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T value)? ok,
-    TResult Function(Object exception)? error,
+    TResult Function(ErrorX error)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(OkX<T> value) ok,
-    required TResult Function(ErrorX<T> value) error,
+    required TResult Function(ResultError<T> value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(OkX<T> value)? ok,
-    TResult? Function(ErrorX<T> value)? error,
+    TResult? Function(ResultError<T> value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(OkX<T> value)? ok,
-    TResult Function(ErrorX<T> value)? error,
+    TResult Function(ResultError<T> value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -118,6 +118,11 @@ class _$OkXImpl<T> implements OkX<T> {
   final T value;
 
   @override
+  String toString() {
+    return 'Result<$T>.ok(value: $value)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -141,7 +146,7 @@ class _$OkXImpl<T> implements OkX<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T value) ok,
-    required TResult Function(Object exception) error,
+    required TResult Function(ErrorX error) error,
   }) {
     return ok(value);
   }
@@ -150,7 +155,7 @@ class _$OkXImpl<T> implements OkX<T> {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(T value)? ok,
-    TResult? Function(Object exception)? error,
+    TResult? Function(ErrorX error)? error,
   }) {
     return ok?.call(value);
   }
@@ -159,7 +164,7 @@ class _$OkXImpl<T> implements OkX<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T value)? ok,
-    TResult Function(Object exception)? error,
+    TResult Function(ErrorX error)? error,
     required TResult orElse(),
   }) {
     if (ok != null) {
@@ -172,7 +177,7 @@ class _$OkXImpl<T> implements OkX<T> {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(OkX<T> value) ok,
-    required TResult Function(ErrorX<T> value) error,
+    required TResult Function(ResultError<T> value) error,
   }) {
     return ok(this);
   }
@@ -181,7 +186,7 @@ class _$OkXImpl<T> implements OkX<T> {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(OkX<T> value)? ok,
-    TResult? Function(ErrorX<T> value)? error,
+    TResult? Function(ResultError<T> value)? error,
   }) {
     return ok?.call(this);
   }
@@ -190,7 +195,7 @@ class _$OkXImpl<T> implements OkX<T> {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(OkX<T> value)? ok,
-    TResult Function(ErrorX<T> value)? error,
+    TResult Function(ResultError<T> value)? error,
     required TResult orElse(),
   }) {
     if (ok != null) {
@@ -213,20 +218,22 @@ abstract class OkX<T> implements Result<T> {
 }
 
 /// @nodoc
-abstract class _$$ErrorXImplCopyWith<T, $Res> {
-  factory _$$ErrorXImplCopyWith(
-          _$ErrorXImpl<T> value, $Res Function(_$ErrorXImpl<T>) then) =
-      __$$ErrorXImplCopyWithImpl<T, $Res>;
+abstract class _$$ResultErrorImplCopyWith<T, $Res> {
+  factory _$$ResultErrorImplCopyWith(_$ResultErrorImpl<T> value,
+          $Res Function(_$ResultErrorImpl<T>) then) =
+      __$$ResultErrorImplCopyWithImpl<T, $Res>;
   @useResult
-  $Res call({Object exception});
+  $Res call({ErrorX error});
+
+  $ErrorXCopyWith<$Res> get error;
 }
 
 /// @nodoc
-class __$$ErrorXImplCopyWithImpl<T, $Res>
-    extends _$ResultCopyWithImpl<T, $Res, _$ErrorXImpl<T>>
-    implements _$$ErrorXImplCopyWith<T, $Res> {
-  __$$ErrorXImplCopyWithImpl(
-      _$ErrorXImpl<T> _value, $Res Function(_$ErrorXImpl<T>) _then)
+class __$$ResultErrorImplCopyWithImpl<T, $Res>
+    extends _$ResultCopyWithImpl<T, $Res, _$ResultErrorImpl<T>>
+    implements _$$ResultErrorImplCopyWith<T, $Res> {
+  __$$ResultErrorImplCopyWithImpl(
+      _$ResultErrorImpl<T> _value, $Res Function(_$ResultErrorImpl<T>) _then)
       : super(_value, _then);
 
   /// Create a copy of Result
@@ -234,69 +241,87 @@ class __$$ErrorXImplCopyWithImpl<T, $Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? exception = null,
+    Object? error = null,
   }) {
-    return _then(_$ErrorXImpl<T>(
-      null == exception ? _value.exception : exception,
+    return _then(_$ResultErrorImpl<T>(
+      null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as ErrorX,
     ));
+  }
+
+  /// Create a copy of Result
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ErrorXCopyWith<$Res> get error {
+    return $ErrorXCopyWith<$Res>(_value.error, (value) {
+      return _then(_value.copyWith(error: value));
+    });
   }
 }
 
 /// @nodoc
 
-class _$ErrorXImpl<T> implements ErrorX<T> {
-  const _$ErrorXImpl(this.exception);
+class _$ResultErrorImpl<T> implements ResultError<T> {
+  const _$ResultErrorImpl(this.error);
 
   @override
-  final Object exception;
+  final ErrorX error;
+
+  @override
+  String toString() {
+    return 'Result<$T>.error(error: $error)';
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ErrorXImpl<T> &&
-            const DeepCollectionEquality().equals(other.exception, exception));
+            other is _$ResultErrorImpl<T> &&
+            (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(exception));
+  int get hashCode => Object.hash(runtimeType, error);
 
   /// Create a copy of Result
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ErrorXImplCopyWith<T, _$ErrorXImpl<T>> get copyWith =>
-      __$$ErrorXImplCopyWithImpl<T, _$ErrorXImpl<T>>(this, _$identity);
+  _$$ResultErrorImplCopyWith<T, _$ResultErrorImpl<T>> get copyWith =>
+      __$$ResultErrorImplCopyWithImpl<T, _$ResultErrorImpl<T>>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T value) ok,
-    required TResult Function(Object exception) error,
+    required TResult Function(ErrorX error) error,
   }) {
-    return error(exception);
+    return error(this.error);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(T value)? ok,
-    TResult? Function(Object exception)? error,
+    TResult? Function(ErrorX error)? error,
   }) {
-    return error?.call(exception);
+    return error?.call(this.error);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T value)? ok,
-    TResult Function(Object exception)? error,
+    TResult Function(ErrorX error)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(exception);
+      return error(this.error);
     }
     return orElse();
   }
@@ -305,7 +330,7 @@ class _$ErrorXImpl<T> implements ErrorX<T> {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(OkX<T> value) ok,
-    required TResult Function(ErrorX<T> value) error,
+    required TResult Function(ResultError<T> value) error,
   }) {
     return error(this);
   }
@@ -314,7 +339,7 @@ class _$ErrorXImpl<T> implements ErrorX<T> {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(OkX<T> value)? ok,
-    TResult? Function(ErrorX<T> value)? error,
+    TResult? Function(ResultError<T> value)? error,
   }) {
     return error?.call(this);
   }
@@ -323,7 +348,7 @@ class _$ErrorXImpl<T> implements ErrorX<T> {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(OkX<T> value)? ok,
-    TResult Function(ErrorX<T> value)? error,
+    TResult Function(ResultError<T> value)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -333,14 +358,151 @@ class _$ErrorXImpl<T> implements ErrorX<T> {
   }
 }
 
-abstract class ErrorX<T> implements Result<T> {
-  const factory ErrorX(final Object exception) = _$ErrorXImpl<T>;
+abstract class ResultError<T> implements Result<T> {
+  const factory ResultError(final ErrorX error) = _$ResultErrorImpl<T>;
 
-  Object get exception;
+  ErrorX get error;
 
   /// Create a copy of Result
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ErrorXImplCopyWith<T, _$ErrorXImpl<T>> get copyWith =>
+  _$$ResultErrorImplCopyWith<T, _$ResultErrorImpl<T>> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$ErrorX {
+  Object get exception => throw _privateConstructorUsedError;
+  StackTrace? get st => throw _privateConstructorUsedError;
+
+  /// Create a copy of ErrorX
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $ErrorXCopyWith<ErrorX> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ErrorXCopyWith<$Res> {
+  factory $ErrorXCopyWith(ErrorX value, $Res Function(ErrorX) then) =
+      _$ErrorXCopyWithImpl<$Res, ErrorX>;
+  @useResult
+  $Res call({Object exception, StackTrace? st});
+}
+
+/// @nodoc
+class _$ErrorXCopyWithImpl<$Res, $Val extends ErrorX>
+    implements $ErrorXCopyWith<$Res> {
+  _$ErrorXCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of ErrorX
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? exception = null,
+    Object? st = freezed,
+  }) {
+    return _then(_value.copyWith(
+      exception: null == exception ? _value.exception : exception,
+      st: freezed == st
+          ? _value.st
+          : st // ignore: cast_nullable_to_non_nullable
+              as StackTrace?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ErrorXImplCopyWith<$Res> implements $ErrorXCopyWith<$Res> {
+  factory _$$ErrorXImplCopyWith(
+          _$ErrorXImpl value, $Res Function(_$ErrorXImpl) then) =
+      __$$ErrorXImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({Object exception, StackTrace? st});
+}
+
+/// @nodoc
+class __$$ErrorXImplCopyWithImpl<$Res>
+    extends _$ErrorXCopyWithImpl<$Res, _$ErrorXImpl>
+    implements _$$ErrorXImplCopyWith<$Res> {
+  __$$ErrorXImplCopyWithImpl(
+      _$ErrorXImpl _value, $Res Function(_$ErrorXImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ErrorX
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? exception = null,
+    Object? st = freezed,
+  }) {
+    return _then(_$ErrorXImpl(
+      null == exception ? _value.exception : exception,
+      freezed == st
+          ? _value.st
+          : st // ignore: cast_nullable_to_non_nullable
+              as StackTrace?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ErrorXImpl implements _ErrorX {
+  const _$ErrorXImpl(this.exception, [this.st]);
+
+  @override
+  final Object exception;
+  @override
+  final StackTrace? st;
+
+  @override
+  String toString() {
+    return 'ErrorX(exception: $exception, st: $st)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ErrorXImpl &&
+            const DeepCollectionEquality().equals(other.exception, exception) &&
+            (identical(other.st, st) || other.st == st));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(exception), st);
+
+  /// Create a copy of ErrorX
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ErrorXImplCopyWith<_$ErrorXImpl> get copyWith =>
+      __$$ErrorXImplCopyWithImpl<_$ErrorXImpl>(this, _$identity);
+}
+
+abstract class _ErrorX implements ErrorX {
+  const factory _ErrorX(final Object exception, [final StackTrace? st]) =
+      _$ErrorXImpl;
+
+  @override
+  Object get exception;
+  @override
+  StackTrace? get st;
+
+  /// Create a copy of ErrorX
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ErrorXImplCopyWith<_$ErrorXImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

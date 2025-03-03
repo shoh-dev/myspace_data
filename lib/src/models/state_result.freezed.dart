@@ -21,7 +21,7 @@ mixin _$StateResult {
     required TResult Function() ok,
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Object exception) error,
+    required TResult Function(ErrorX error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +29,7 @@ mixin _$StateResult {
     TResult? Function()? ok,
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Object exception)? error,
+    TResult? Function(ErrorX error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +37,7 @@ mixin _$StateResult {
     TResult Function()? ok,
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Object exception)? error,
+    TResult Function(ErrorX error)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -114,6 +114,11 @@ class _$StateResultOkXImpl implements StateResultOkX {
   const _$StateResultOkXImpl();
 
   @override
+  String toString() {
+    return 'StateResult.ok()';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$StateResultOkXImpl);
@@ -128,7 +133,7 @@ class _$StateResultOkXImpl implements StateResultOkX {
     required TResult Function() ok,
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Object exception) error,
+    required TResult Function(ErrorX error) error,
   }) {
     return ok();
   }
@@ -139,7 +144,7 @@ class _$StateResultOkXImpl implements StateResultOkX {
     TResult? Function()? ok,
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Object exception)? error,
+    TResult? Function(ErrorX error)? error,
   }) {
     return ok?.call();
   }
@@ -150,7 +155,7 @@ class _$StateResultOkXImpl implements StateResultOkX {
     TResult Function()? ok,
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Object exception)? error,
+    TResult Function(ErrorX error)? error,
     required TResult orElse(),
   }) {
     if (ok != null) {
@@ -226,6 +231,11 @@ class _$StateResultInitialXImpl implements StateResultInitialX {
   const _$StateResultInitialXImpl();
 
   @override
+  String toString() {
+    return 'StateResult.initial()';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -241,7 +251,7 @@ class _$StateResultInitialXImpl implements StateResultInitialX {
     required TResult Function() ok,
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Object exception) error,
+    required TResult Function(ErrorX error) error,
   }) {
     return initial();
   }
@@ -252,7 +262,7 @@ class _$StateResultInitialXImpl implements StateResultInitialX {
     TResult? Function()? ok,
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Object exception)? error,
+    TResult? Function(ErrorX error)? error,
   }) {
     return initial?.call();
   }
@@ -263,7 +273,7 @@ class _$StateResultInitialXImpl implements StateResultInitialX {
     TResult Function()? ok,
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Object exception)? error,
+    TResult Function(ErrorX error)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -339,6 +349,11 @@ class _$StateResultLoadingXImpl implements StateResultLoadingX {
   const _$StateResultLoadingXImpl();
 
   @override
+  String toString() {
+    return 'StateResult.loading()';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -354,7 +369,7 @@ class _$StateResultLoadingXImpl implements StateResultLoadingX {
     required TResult Function() ok,
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Object exception) error,
+    required TResult Function(ErrorX error) error,
   }) {
     return loading();
   }
@@ -365,7 +380,7 @@ class _$StateResultLoadingXImpl implements StateResultLoadingX {
     TResult? Function()? ok,
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Object exception)? error,
+    TResult? Function(ErrorX error)? error,
   }) {
     return loading?.call();
   }
@@ -376,7 +391,7 @@ class _$StateResultLoadingXImpl implements StateResultLoadingX {
     TResult Function()? ok,
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Object exception)? error,
+    TResult Function(ErrorX error)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -433,7 +448,9 @@ abstract class _$$StateResultErrorXImplCopyWith<$Res> {
           $Res Function(_$StateResultErrorXImpl) then) =
       __$$StateResultErrorXImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Object exception});
+  $Res call({ErrorX error});
+
+  $ErrorXCopyWith<$Res> get error;
 }
 
 /// @nodoc
@@ -449,33 +466,50 @@ class __$$StateResultErrorXImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? exception = null,
+    Object? error = null,
   }) {
     return _then(_$StateResultErrorXImpl(
-      null == exception ? _value.exception : exception,
+      null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as ErrorX,
     ));
+  }
+
+  /// Create a copy of StateResult
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ErrorXCopyWith<$Res> get error {
+    return $ErrorXCopyWith<$Res>(_value.error, (value) {
+      return _then(_value.copyWith(error: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$StateResultErrorXImpl implements StateResultErrorX {
-  const _$StateResultErrorXImpl(this.exception);
+  const _$StateResultErrorXImpl(this.error);
 
   @override
-  final Object exception;
+  final ErrorX error;
+
+  @override
+  String toString() {
+    return 'StateResult.error(error: $error)';
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$StateResultErrorXImpl &&
-            const DeepCollectionEquality().equals(other.exception, exception));
+            (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(exception));
+  int get hashCode => Object.hash(runtimeType, error);
 
   /// Create a copy of StateResult
   /// with the given fields replaced by the non-null parameter values.
@@ -492,9 +526,9 @@ class _$StateResultErrorXImpl implements StateResultErrorX {
     required TResult Function() ok,
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Object exception) error,
+    required TResult Function(ErrorX error) error,
   }) {
-    return error(exception);
+    return error(this.error);
   }
 
   @override
@@ -503,9 +537,9 @@ class _$StateResultErrorXImpl implements StateResultErrorX {
     TResult? Function()? ok,
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Object exception)? error,
+    TResult? Function(ErrorX error)? error,
   }) {
-    return error?.call(exception);
+    return error?.call(this.error);
   }
 
   @override
@@ -514,11 +548,11 @@ class _$StateResultErrorXImpl implements StateResultErrorX {
     TResult Function()? ok,
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Object exception)? error,
+    TResult Function(ErrorX error)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(exception);
+      return error(this.error);
     }
     return orElse();
   }
@@ -562,10 +596,9 @@ class _$StateResultErrorXImpl implements StateResultErrorX {
 }
 
 abstract class StateResultErrorX implements StateResult {
-  const factory StateResultErrorX(final Object exception) =
-      _$StateResultErrorXImpl;
+  const factory StateResultErrorX(final ErrorX error) = _$StateResultErrorXImpl;
 
-  Object get exception;
+  ErrorX get error;
 
   /// Create a copy of StateResult
   /// with the given fields replaced by the non-null parameter values.

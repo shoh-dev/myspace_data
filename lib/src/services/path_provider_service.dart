@@ -8,7 +8,7 @@ class PathProviderService {
     try {
       return Result.ok(await p.getApplicationDocumentsDirectory());
     } catch (e) {
-      return Result.error(e);
+      return Result.error(ErrorX(e));
     }
   }
 }

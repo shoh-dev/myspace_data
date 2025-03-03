@@ -10,24 +10,12 @@ part 'result.freezed.dart';
 @freezed
 sealed class Result<T> with _$Result<T> {
   const factory Result.ok(T value) = OkX<T>;
-  const factory Result.error(Object exception) = ErrorX;
+  const factory Result.error(ErrorX error) = ResultError;
+}
 
-  @override
-  String toString() {
-    if (this is ErrorX) {
-      final exception = (this as ErrorX).exception;
-
-      switch (exception) {
-        case ErrorX():
-          return exception.exception.toString();
-        case TypeError():
-          return "Type Error: ${exception.toString()}";
-        case SocketException():
-          return "Please check your internet connection!";
-      }
-    }
-    return super.toString();
-  }
+@freezed
+class ErrorX with _$ErrorX {
+  const factory ErrorX(Object exception, [StackTrace? st]) = _ErrorX;
 }
 
 /// A successful [Result] with a returned [value].
