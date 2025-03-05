@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:myspace_data/myspace_data.dart';
 
@@ -84,7 +86,7 @@ class MyHomePage extends StatelessWidget {
             StateConnector<AppState, int>(
                 selector: (state) => state.counter,
                 builder: (context, dispatch, model) {
-                  print('build Text');
+                  log('build Text');
                   return Text(
                     '$model',
                     style: Theme.of(context).textTheme.headlineMedium,
@@ -93,7 +95,7 @@ class MyHomePage extends StatelessWidget {
             StateConnector<AppState, int>(
                 selector: (state) => state.counter2,
                 builder: (context, dispatch, model) {
-                  print('build Text counter2');
+                  log('build Text counter2');
                   return Text(
                     '$model',
                     style: Theme.of(context).textTheme.headlineMedium,
@@ -102,8 +104,9 @@ class MyHomePage extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: DispatchConnector<AppState>(builder: (context, dispatch) {
-        print('build floatingActionButton');
+      floatingActionButton:
+          DispatchConnector<AppState>(builder: (context, dispatch) {
+        log('build floatingActionButton');
         return FloatingActionButton(
           onPressed: () => dispatch(IncrementAction()),
           tooltip: 'Increment',
