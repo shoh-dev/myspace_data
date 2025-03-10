@@ -1,7 +1,6 @@
-import 'dart:developer';
-
-import 'package:flutter/foundation.dart';
 import 'package:logging/logging.dart';
+
+export 'package:logging/logging.dart';
 
 // class ConsoleOutput extends LogOutput {
 //   @override
