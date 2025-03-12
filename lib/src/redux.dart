@@ -1,4 +1,5 @@
-export 'package:async_redux/async_redux.dart' show Store;
+export 'package:async_redux/async_redux.dart'
+    show Store, UserExceptionDialog, UserException, NavigateAction;
 
 export 'redux/action.dart';
 export 'redux/store.dart';

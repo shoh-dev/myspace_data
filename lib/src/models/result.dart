@@ -14,7 +14,16 @@ sealed class Result<T> with _$Result<T> {
 
 @freezed
 class ErrorX with _$ErrorX {
+  const ErrorX._();
   const factory ErrorX(Object exception, [StackTrace? st]) = _ErrorX;
+
+  String string() {
+    final type = exception.runtimeType;
+    if (type is String) {
+      return '$exception';
+    }
+    return exception.toString();
+  }
 }
 
 /// A successful [Result] with a returned [value].

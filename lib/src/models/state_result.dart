@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:myspace_data/src/models/result.dart';
+import 'package:myspace_data/myspace_data.dart';
 
 part 'state_result.freezed.dart';
 

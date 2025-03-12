@@ -455,8 +455,8 @@ class __$$ErrorXImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ErrorXImpl implements _ErrorX {
-  const _$ErrorXImpl(this.exception, [this.st]);
+class _$ErrorXImpl extends _ErrorX {
+  const _$ErrorXImpl(this.exception, [this.st]) : super._();
 
   @override
   final Object exception;
@@ -490,9 +490,10 @@ class _$ErrorXImpl implements _ErrorX {
       __$$ErrorXImplCopyWithImpl<_$ErrorXImpl>(this, _$identity);
 }
 
-abstract class _ErrorX implements ErrorX {
+abstract class _ErrorX extends ErrorX {
   const factory _ErrorX(final Object exception, [final StackTrace? st]) =
       _$ErrorXImpl;
+  const _ErrorX._() : super._();
 
   @override
   Object get exception;
