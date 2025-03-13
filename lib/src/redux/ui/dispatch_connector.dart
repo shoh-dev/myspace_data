@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:myspace_data/myspace_data.dart';
 import 'package:async_redux/async_redux.dart' as ar;
@@ -15,7 +14,7 @@ class DispatchConnector<St> extends StateConnector<St, void> {
           selector: (_) {},
           isDistinct: false,
           rebuildOnChange: false,
-          onInitialBuild: (dispatch, model) => onInitialBuild,
+          onInit: onInitialBuild,
           builder: (context, dispatch, _) => builder(context, dispatch),
         );
 }

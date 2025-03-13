@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ffi';
 
 import 'package:async_redux/async_redux.dart' as ar;
 import 'package:flutter/widgets.dart';
@@ -15,6 +16,7 @@ class StateConnector<St, Model> extends StatelessWidget {
     required this.builder,
     this.onDispose,
     this.onInitialBuild,
+    this.onInit,
     this.onDidChange,
     this.rebuildOnChange = true,
     this.isDistinct = true,
@@ -25,6 +27,7 @@ class StateConnector<St, Model> extends StatelessWidget {
       BuildContext context, Dispatcher<St> dispatch, Model model) builder;
   final FutureOr<void> Function(Dispatcher<St> dispatch, Model model)?
       onInitialBuild;
+  final FutureOr<void> Function(Dispatcher<St> dispatch)? onInit;
   final FutureOr<void> Function(Dispatcher<St> dispatch, St state, Model model)?
       onDidChange;
   final FutureOr<void> Function(Dispatcher<St> dispatch)? onDispose;
@@ -41,8 +44,10 @@ class StateConnector<St, Model> extends StatelessWidget {
       converter: (store) => selector(store.state),
       onDispose:
           onDispose != null ? (store) => onDispose!(store.dispatch) : null,
+      onInit: onInit != null ? (store) => onInit!(store.dispatch) : null,
       onInitialBuild: onInitialBuild != null
-          ? (ctx, store, vm) => onInitialBuild!(store.dispatch, vm)
+          ? (context, store, viewModel) =>
+              onInitialBuild!(store.dispatch, viewModel)
           : null,
       onDidChange: onDidChange != null
           ? (ctx, store, vm) => onDidChange!(store.dispatch, store.state, vm)
